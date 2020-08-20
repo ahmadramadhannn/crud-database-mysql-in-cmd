@@ -1,2 +1,2 @@
 # create-database-in-mysql
- ini adalah contoh crud php mysql melalui cmd
+ ini adalah contoh crud mysql melalui cmd

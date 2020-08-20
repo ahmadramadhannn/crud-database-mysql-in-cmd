@@ -1,0 +1,88 @@
+membuat database mysql melalui cmd 
+
+Masuk ke xampp sebagai admin atau root sesuai direktori masing-masing.
+
+C:\Users\LENOVO>cd\                             // untuk masuk ke directori c, kebetulan folder instalasi saya ada di folder c maka saya masuk ke folder c, tapi jika folder 					           instalasi anda ada di folder lain, anda masuk ke folder tersebut 
+C:\> 		                               // kemudian akan muncul seperti ini
+C:\> cd xampp                                 // lalu masuk ke folder xampp
+C:\xampp> 	             	             //  kemudian akan muncul seperti ini
+C:\xampp>cd mysql        	            //   lalu masuk ke folder mysql
+C:\xampp\mysql>  		           //    kemudian akan muncul seperti ini
+C:\xampp\mysql\bin>      	   	  //     kemudian masuk ke folder bin
+C:\xampp\mysql\bin>   		  	 //      kemudian akan muncul seperti ini
+C:\xampp\mysql\bin>mysql -u root 	//	 lalu masuk ke mysql sebagai admin atau root dengan perintah ini
+
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 68
+Server version: 10.4.11-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]>		  	        // kemudian akan muncul seperti ini
+MariaDB [(none)]> create database pegadaian;   //  lalu ketik create database kemudian ketik nama database yang anda inginkan
+Query OK, 1 row affected (0.004 sec)	      //   maka akan tampil seperti ini jika database berhasil dibuat
+MariaDB [(none)]> use pegadaian;	     //    lalu ketik use dan nama database yang telah dibuat untuk menggunakan database tersebut
+Database changed			    //     maka akan tampil sepert ini jika database berhasil digunakan
+MariaDB [pegadaian]> create table pegadai (
+    -> id int primary key auto_increment,
+    -> nama varchar(100),
+    -> tanggalgadai varchar(100),
+    -> barang varchar(100),
+    -> noktp varchar (50)
+    -> );				 //  lalu ketik create table kemudian nama tablenya dan value di dalamnya
+				        //   value di dalam berupa nama lalu tipe datanya apa lalu berapa karaktek di dalam nya
+Query OK, 0 rows affected (0.038 sec)   //   maka akan tampil seperti ini jika table berhasil dibuat
+MariaDB [pegadaian]> describe pegadai; //    lalu ketik describe kemudian nama tablenya untuk mengetahui apa saja yang ada di dalam table tersebut
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nama         | varchar(100) | YES  |     | NULL    |                |
+| tanggalgadai | varchar(100) | YES  |     | NULL    |                |
+| barang       | varchar(100) | YES  |     | NULL    |                |
+| noktp        | varchar(50)  | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.035 sec)	      // maka akan muncul tampilan seperti ini 
+MariaDB [pegadaian]> insert into pegadai values ('','Dede Romdhoni','12 Juli','Mobil','102030405060'); // lalu ketik insert into nama table yang telah dibuat dan 													  values untuk menginput data ke dalam table
+												      // values nya sesuai dengan apa yang telah dibuat, jika varchar 													 maka isi dengan varchar, jika int isi dengan int
+Query OK, 1 row affected, 1 warning (0.005 sec)  // maka akan tampil seperti ini jika berhasil menginput data ke dalam tablenya
+MariaDB [pegadaian]> select * from pegadai;  	//  untuk melihat isi di dalam tablenya, bintang itu artinya semua data di dalam table pegadai
++----+---------------+--------------+--------+--------------+
+| id | nama          | tanggalgadai | barang | noktp        |
++----+---------------+--------------+--------+--------------+
+|  1 | Dede Romdhoni | 12 Juli      | Mobil  | 102030405060 |
++----+---------------+--------------+--------+--------------+
+1 row in set (0.001 sec)		     // maka akan muncul tampilan seperti ini jika table berhasil ditampilkan
+MariaDB [pegadaian]> insert into pegadai values ('','Rizky Bachtiar','12 November','Motor','2030405060'); // untuk menambahkan data ke dalam table anda bisa 						 menggunakan cara yang sama seperti menginput data ke dalam table sebelumnya
+Query OK, 1 row affected, 1 warning (0.011 sec)  // maka akan tampil seperti ini jika berhasil menambahkan data ke dalam table
+MariaDB [pegadaian]> select * from pegadai;     // untuk melihat isi di dalam table setelah berhasil menambahkan data ke dalam table
++----+----------------+--------------+--------+--------------+
+| id | nama           | tanggalgadai | barang | noktp        |
++----+----------------+--------------+--------+--------------+
+|  1 | Dede Romdhoni  | 12 Juli      | Mobil  | 102030405060 |
+|  2 | Rizky Bachtiar | 12 November  | Motor  | 2030405060   |
++----+----------------+--------------+--------+--------------+
+2 rows in set (0.001 sec)		      // maka akan tampil seperti ini jika berhasil menambahkan data ke dalam table
+MariaDB [pegadaian]> update pegadai set barang = 'Rumah' where id = '2';   // ketik update lalu nama table nya kemudian set lalu apa yang mau di update kemudian ketik 									      = 'value apa yang ingin dimasukkan untuk merubah value sebelumnya', lalu ketik where 											 kemudian primary key = 'ingin merubah yang mana' agar tidak semua data berubah
+Query OK, 1 row affected (0.002 sec)
+Rows matched: 1  Changed: 1  Warnings: 0      // maka akan tampil seperti ini jika data di dalam table berhasil di update
+MariaDB [pegadaian]> select * from pegadai;  // lalu ketik kembali select * from nama tablenya untuk melihat perubahan di dalamnya
++----+----------------+--------------+--------+--------------+
+| id | nama           | tanggalgadai | barang | noktp        |
++----+----------------+--------------+--------+--------------+
+|  1 | Dede Romdhoni  | 12 Juli      | Mobil  | 102030405060 |
+|  2 | Rizky Bachtiar | 12 November  | Rumah  | 2030405060   |
++----+----------------+--------------+--------+--------------+
+2 rows in set (0.001 sec)  		   // maka akan tampil seperti jika data di dalam table berhasil di update
+MariaDB [pegadaian]> delete from pegadai where id = '2'; // kemudian ketik detele from nama tablenya where lalu identifier nya agar tidak semua terhapus
+Query OK, 1 row affected (0.003 sec)      // maka akan tampil seperti ini jika data di dalam table berhasil di hapus
+MariaDB [pegadaian]> select * from pegadai;  // lalu ketik kembali select * from nama tablenya untuk melihat data yang telah dihapus di dalamnya
++----+---------------+--------------+--------+--------------+
+| id | nama          | tanggalgadai | barang | noktp        |
++----+---------------+--------------+--------+--------------+
+|  1 | Dede Romdhoni | 12 Juli      | Mobil  | 102030405060 |
++----+---------------+--------------+--------+--------------+ 
+1 row in set (0.001 sec)                     // maka akan tampil seperti ini jika data di dalam table berhasil dihapus
+
